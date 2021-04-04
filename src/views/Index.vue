@@ -1,12 +1,15 @@
 <template>
   <transition name="fade">
     <div v-if="loading">
-      <BigPic :imgList="imgList" class="w-screen h-screen bg-black p-4" />
+      <BigPic
+        :imgList="imgList"
+        class="w-full h-screen bg-black px-2 md:px-4"
+      />
       <PicDesc :desc="desc" class="absolute bottom-0 right-0" />
       <MorePic
         v-for="item in cidList"
         :cidList="item"
-        class="w-screen h-screen p-4 pt-0"
+        class="px-2 pt-2 md:px-4 md:pt-4"
         @event="clickCid($event)"
       />
       <transition name="fade">

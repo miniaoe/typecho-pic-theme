@@ -1,8 +1,8 @@
 <template>
   <div
-    class="flex flex-col items-end justify-end text-right pb-12 pr-12 text-white"
+    class="flex flex-col items-end justify-end text-right pb-6 px-6 text-white md:px-12"
   >
-    <h1 class="text-7xl font-bold">
+    <h1 class="text-4xl md:text-6xl font-bold">
       {{ desc.title }}
     </h1>
     <h3 class="mt-8">

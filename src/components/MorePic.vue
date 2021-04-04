@@ -1,19 +1,22 @@
 <template>
   <div class="relative">
     <transition-group name="fade">
-      <div v-if="loading" :key="1" class="grid grid-cols-6 gap-4 w-full h-full">
+      <div
+        v-if="loading"
+        :key="1"
+        class="grid grid-cols-6 gap-2 md:gap-4 w-full h-full"
+      >
         <div
-          v-for="(item, index) in imgList"
-          class="w-full h-full bg-no-repeat bg-center bg-cover cursor-pointer item"
-          :class="[index <= 1 ? 'col-span-3' : 'col-span-2']"
+          v-for="item in imgList"
+          class="w-full h-full bg-no-repeat bg-center bg-cover cursor-pointer item img-width"
           :style="{ backgroundImage: 'URL(' + item.img[0] + ')' }"
           @click="clickCid(item)"
         >
           <div
-            class="transition-all duration-500 w-full h-full opacity-0 bg-black flex justify-center flex-col items-center"
+            class="transition-all duration-500 w-full h-full bg-opacity-50 opacity-100 bg-black flex justify-center flex-col items-center md:opacity-0"
           >
             <p class="text-white font-bold">{{ item.title }}</p>
-            <p class="text-white mt-2 tracking-normal">
+            <p class="text-white mt-2 tracking-norma">
               ( {{ item.img.length }} Images )
             </p>
           </div>
@@ -90,5 +93,36 @@ export default {
 
 .item:hover > div {
   opacity: 0.8;
+}
+
+.img-width {
+  grid-column: span 6 / span 6;
+  min-height: 35vh;
+}
+
+@media (min-width: 768px) {
+  .img-width {
+    grid-column: span 3 / span 3;
+    min-height: 45vh;
+  }
+  .img-width:last-child {
+    grid-column: span 6 / span 6;
+  }
+}
+
+@media (min-width: 1024px) {
+  .img-width {
+    grid-column: span 2 / span 2;
+    min-height: 50vh;
+  }
+  .img-width:nth-child(1) {
+    grid-column: span 3 / span 3;
+  }
+  .img-width:nth-child(2) {
+    grid-column: span 3 / span 3;
+  }
+  .img-width:last-child {
+    grid-column: span 2 / span 2;
+  }
 }
 </style>
