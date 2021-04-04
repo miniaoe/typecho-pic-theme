@@ -81,6 +81,17 @@ export default {
   display: none;
 }
 
+.menu a {
+  color: #fff;
+  padding-bottom: 2px;
+  padding-left: 3px;
+  border-bottom: 1px solid transparent;
+  transition: ease-in-out 0.3s;
+}
+.menu a:hover {
+  border-bottom: 1px solid #fff;
+}
+
 @media (max-width: 768px) {
   .menu {
     transition: all 0.4s;
@@ -89,11 +100,12 @@ export default {
     top: 0;
     left: -100%;
     height: 100%;
-    width: 100%;
+    width: 100vw;
     padding: 2rem;
     font-size: 1.3rem;
     font-weight: bold;
     background-color: rgba(0, 0, 0, 0.9);
+    max-width: 100%;
   }
   .menu > li {
     margin-bottom: 1rem;
@@ -104,16 +116,11 @@ export default {
   .openMenu {
     display: block;
   }
-}
-
-.menu a {
-  color: #fff;
-  padding-bottom: 2px;
-  padding-left: 3px;
-  border-bottom: 1px solid transparent;
-  transition: ease-in-out 0.3s;
-}
-.menu a:hover {
-  border-bottom: 1px solid #fff;
+  .menu a {
+    border-bottom: 2px solid transparent;
+  }
+  .menu a:hover {
+    border-bottom: 2px solid #fff;
+  }
 }
 </style>
