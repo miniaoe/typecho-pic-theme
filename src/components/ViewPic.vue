@@ -5,7 +5,7 @@
         <div class="font-bold">{{ info.option.title }}</div>
         <div class="cursor-pointer close" @click="close()">CLOSE</div>
       </div>
-      <div class="w-full h-full p-2 md:p-4 pb-24">
+      <div class="w-full h-full px-2 pb-24 md:px-4">
         <div
           class="flex transition-all duration-300 justify-between items-center w-full h-full bg-no-repeat bg-contain bg-center"
           :style="{ backgroundImage: 'URL(' + img + ')' }"
