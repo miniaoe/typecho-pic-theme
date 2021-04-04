@@ -16,7 +16,7 @@
         <ViewPic
           v-if="viewImg.open"
           :info="viewImg"
-          class="fixed z-10 top-0 w-screen h-screen"
+          class="fixed z-10 top-0 w-screen h-screen -ml-2 md:-ml-4"
           @close="closeView($event)"
         />
       </transition>
