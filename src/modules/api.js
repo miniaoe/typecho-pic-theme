@@ -14,11 +14,19 @@ class APIModel extends HttpRequest {
     });
   }
 
-  getRandomPic(params) {
+  getEssayList(params = {}) {
+    return this.request({
+      url: URL.essayList,
+      method: "GET",
+      params
+    });
+  }
+
+  getRandomPic(params = {}) {
     return this.getEssayContent(params);
   }
 
-  getEssayContent(params) {
+  getEssayContent(params = {}) {
     return this.request({
       url: URL.essayContent,
       method: "GET",

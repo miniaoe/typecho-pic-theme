@@ -1,20 +1,21 @@
 <template>
-  <div id="app" class="">
+  <div id="app">
     <Navbar class="fixed z-10" />
-    <div class="bg-black">
-      <router-view />
-    </div>
+    <router-view />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 export default {
   data() {
     return {};
   },
   components: {
-    Navbar
+    Navbar,
+    Footer
   },
 
   methods: {}
@@ -25,6 +26,7 @@ export default {
 body {
   letter-spacing: 0.2rem;
   font-size: 14px;
+  background-color: #000;
 }
 html::-webkit-scrollbar {
   width: 0;
