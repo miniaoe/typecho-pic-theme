@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between w-full h-20 md:h-24 bg-black">
+  <div class="flex justify-between h-20 md:h-24 bg-black">
     <div class="flex bd w-8/12 h-full items-center">
       <div class="logo text-4xl text-white mr-16">
         OK
