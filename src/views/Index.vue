@@ -7,9 +7,10 @@
       />
       <PicDesc :desc="desc" class="absolute bottom-0 right-0" />
       <MorePic
-        v-for="item in cidList"
+        v-for="(item, index) in cidList"
         :cidList="item"
-        class="w-full min-h-screen pb-2 md:pb-4"
+        :key="index"
+        class="w-full vh50 pb-2 md:pb-4"
         @event="clickCid($event)"
       />
       <transition name="fade">
@@ -26,15 +27,15 @@
 
 <script>
 // 引用依赖
-import ApiModule from "@/modules/api";
+import ApiModule from "../modules/api";
 const API = new ApiModule();
-import { getImgUrl, handleScroll } from "@/modules/common";
+import { getImgUrl, handleScroll, throttle } from "../modules/common";
 
 // 引用组件
-import BigPic from "@/components/BigPic";
-import PicDesc from "@/components/PicDesc";
-import MorePic from "@/components/MorePic";
-import ViewPic from "@/components/ViewPic";
+import BigPic from "../components/BigPic";
+import PicDesc from "../components/PicDesc";
+import MorePic from "../components/MorePic";
+import ViewPic from "../components/ViewPic";
 
 export default {
   data() {
@@ -45,12 +46,12 @@ export default {
       loading: false,
       viewImg: {
         option: null,
-        open: false
+        open: false,
       },
       loadPage: {
         load: true,
-        page: 1
-      }
+        page: 1,
+      },
     };
   },
 
@@ -58,29 +59,31 @@ export default {
     BigPic,
     MorePic,
     PicDesc,
-    ViewPic
+    ViewPic,
   },
 
   beforeMount() {
     Promise.all([
       this._getDesc(),
       this._getRandomPic(),
-      this._getEssayList({ page: this.loadPage.page })
+      this._getEssayList({ page: this.loadPage.page }),
     ]).then(() => {
       this.loading = true;
     });
   },
 
   mounted() {
-    addEventListener("scroll", () => {
-      if (handleScroll() && this.loadPage.load === true) {
-        let page = (this.loadPage.page = this.loadPage.page + 1);
-        this._getEssayList({ page });
-      }
-    });
+    addEventListener("scroll", this.scroll.bind(this, this));
   },
 
   methods: {
+    scroll: throttle((self) => {
+      if (handleScroll() && self.loadPage.load === true) {
+        let page = (self.loadPage.page = self.loadPage.page + 1);
+        self._getEssayList({ page });
+      }
+    }, 700),
+
     clickCid(event) {
       this.viewImg.option = event;
       this.viewImg.open = true;
@@ -106,18 +109,18 @@ export default {
       let res = await API.getEssayList(value);
       res = res.data.data.dataSet;
       if (res.length !== 0) {
-        let temp = res.map(val => {
+        let temp = res.map((val) => {
           return {
             cid: val.cid,
-            title: val.title
+            title: val.title,
           };
         });
         this.cidList.push(temp);
       } else {
         this.loadPage.load = false;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -128,5 +131,8 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+.vh50 {
+  min-height: 50vh;
 }
 </style>

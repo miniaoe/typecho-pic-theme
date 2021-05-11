@@ -8,12 +8,32 @@
       >
         <div
           v-for="item in imgList"
-          class="w-full h-full bg-no-repeat bg-center bg-cover cursor-pointer item img-width"
+          class="
+            w-full
+            h-full
+            bg-no-repeat bg-center bg-cover
+            cursor-pointer
+            item
+            img-width
+          "
           :style="{ backgroundImage: 'URL(' + item.img[0] + ')' }"
           @click="clickCid(item)"
         >
           <div
-            class="transition-all duration-500 w-full h-full bg-opacity-50 opacity-100 bg-black flex justify-center flex-col items-center md:opacity-0"
+            class="
+              transition-all
+              duration-500
+              w-full
+              h-full
+              bg-opacity-50
+              opacity-100
+              bg-black
+              flex
+              justify-center
+              flex-col
+              items-center
+              md:opacity-0
+            "
           >
             <p class="text-white font-bold">{{ item.title }}</p>
             <p class="text-white mt-2 tracking-norma">
@@ -37,13 +57,13 @@ import MaskOff from "@/components/MaskOff";
 
 export default {
   components: {
-    MaskOff
+    MaskOff,
   },
   props: ["cidList"],
   data() {
     return {
       imgList: null,
-      loading: false
+      loading: false,
     };
   },
   beforeMount() {
@@ -65,20 +85,20 @@ export default {
         return {
           cid: val.data.data.cid,
           title: this.cidList[index].title,
-          img: getImgUrl(val.data.data.text)
+          img: getImgUrl(val.data.data.text),
         };
       });
       await this._LoadImg(this.imgList);
     },
 
     async _LoadImg(val) {
-      let img = val.map(val => {
+      let img = val.map((val) => {
         return loadImage(val.img[0]);
       });
       await Promise.all(img);
       this.loading = true;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -115,14 +135,14 @@ export default {
     grid-column: span 2 / span 2;
     min-height: 50vh;
   }
+  .img-width:last-child {
+    grid-column: span 2 / span 2;
+  }
   .img-width:nth-child(1) {
     grid-column: span 3 / span 3;
   }
   .img-width:nth-child(2) {
     grid-column: span 3 / span 3;
-  }
-  .img-width:last-child {
-    grid-column: span 2 / span 2;
   }
 }
 </style>

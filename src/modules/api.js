@@ -1,16 +1,17 @@
-import HttpRequest from "@/lib/axios";
+import HttpRequest from "../lib/axios";
 
 const URL = {
-  settings: "/api/settings",
-  essayList: "/api/posts",
-  essayContent: "/api/post"
+  settings: "api/settings",
+  essayList: "api/posts",
+  essayContent: "api/post",
+  category: "api/categories",
 };
 
 class APIModel extends HttpRequest {
   getDesc() {
     return this.request({
       url: URL.settings,
-      method: "GET"
+      method: "GET",
     });
   }
 
@@ -18,7 +19,7 @@ class APIModel extends HttpRequest {
     return this.request({
       url: URL.essayList,
       method: "GET",
-      params
+      params,
     });
   }
 
@@ -30,7 +31,14 @@ class APIModel extends HttpRequest {
     return this.request({
       url: URL.essayContent,
       method: "GET",
-      params
+      params,
+    });
+  }
+
+  getCategory() {
+    return this.request({
+      url: URL.category,
+      method: "GET",
     });
   }
 }

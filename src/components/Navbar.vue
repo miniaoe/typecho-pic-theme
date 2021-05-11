@@ -1,20 +1,15 @@
 <template>
   <div class="flex justify-between h-20 md:h-24 bg-black">
     <div class="flex bd w-8/12 h-full items-center">
-      <div class="logo text-4xl text-white mr-16">
-        OK
-      </div>
+      <div class="logo text-4xl text-white mr-16">OK</div>
       <ul
         class="menu relative"
         :class="{ active: mobMenu }"
         @touchmove.prevent
         @mousewheel.prevent
       >
-        <li><a href="#">首页</a></li>
-        <li><a href="#">我的作品</a></li>
-        <li><a href="#">我的简历</a></li>
-        <li><a href="#">BLOG</a></li>
-        <li><a href="#">首页</a></li>
+        <li><a href="./">首页</a></li>
+        <li><router-link to="/works">分类</router-link></li>
       </ul>
     </div>
     <div class="h-full flex items-center text-white">
@@ -57,15 +52,15 @@ export default {
   name: "Navbar.vue",
   data() {
     return {
-      mobMenu: false
+      mobMenu: false,
     };
   },
   methods: {
     // 点击LOGO跳转
     openMenu() {
       this.mobMenu = !this.mobMenu;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -73,8 +68,11 @@ export default {
 .menu {
   display: flex;
   justify-content: space-between;
-  width: 66%;
   max-width: 42rem;
+}
+
+.menu > li {
+  margin-right: 2rem;
 }
 
 .openMenu {

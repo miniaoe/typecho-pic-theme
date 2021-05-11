@@ -76,7 +76,7 @@ export default {
       if (this.id === this.imgList.length) {
         this.id = 0;
       }
-      bg.src = this.imgList[this.id] + "?t=" + new Date().getTime();
+      bg.src = this.imgList[this.id];
       bg.onload = () => {
         this.img = bg.src;
       };

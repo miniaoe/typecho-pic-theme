@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="px-2 pb-2 md:px-4 md:pb-4">
-    <Navbar class="fixed z-10 px-2 md:px-16 w-full -ml-2 md:-ml-4" />
+    <Navbar class="sticky top-0 z-10 px-2 md:px-16 w-full " />
     <router-view />
     <Footer />
   </div>

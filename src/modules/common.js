@@ -5,7 +5,7 @@ function getImgUrl(value) {
 }
 
 function loadImage(url) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const img = new Image();
     img.onload = () => resolve(img);
     img.src = url;
@@ -25,4 +25,17 @@ function handleScroll() {
   return scrollTop + windowHeight === scrollHeight;
 }
 
-export { getImgUrl, loadImage, handleScroll };
+function throttle(fn, delay) {
+  let timeout = null;
+  return function () {
+    let args = arguments;
+    if (!timeout) {
+      timeout = setTimeout(() => {
+        timeout = null;
+        fn.apply(this, args);
+      }, delay);
+    }
+  };
+}
+
+export { getImgUrl, loadImage, handleScroll, throttle };

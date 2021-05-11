@@ -9,7 +9,11 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      component: () => import("@/views/Index")
+      component: () => import("../views/Index.vue")
+    },
+    {
+      path:"/works",
+      component:()=>import('../views/CatePage.vue')
     }
   ]
 });
